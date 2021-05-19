@@ -17,5 +17,8 @@
     "mongoose": "^5.12.7",
     "swagger-jsdoc": "^6.0.0",
     "swagger-ui-express": "^4.1.6"
+  },
+  "engines": {
+    "node": "v14.16.1"
   }
 }
