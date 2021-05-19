@@ -6,6 +6,7 @@ const cors = require("cors");
 const routesUrls = require("./routes/routes");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const path = require("path");
 app.use(express.static(path.join(__dirname, "build")));
 
 const swaggerOptions = {
