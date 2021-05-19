@@ -4,9 +4,10 @@
   "description": "Client List Application",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  },  
   "author": "Nare Stepanyan",
   "license": "ISC",
   "dependencies": {
