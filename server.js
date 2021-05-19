@@ -7,7 +7,6 @@ const routesUrls = require("./routes/routes");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const path = require("path");
-app.use(express.static(path.join(__dirname, "client/build")));
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -40,6 +39,7 @@ db.once("open", function () {
 });
 
 app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "client/build")));
 app.use(cors());
 app.use("/", routesUrls);
 
