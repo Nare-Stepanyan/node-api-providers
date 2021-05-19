@@ -1,0 +1,20 @@
+{
+  "name": "clients-backend",
+  "version": "1.0.0",
+  "description": "Client List Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nare Stepanyan",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.7",
+    "swagger-jsdoc": "^6.0.0",
+    "swagger-ui-express": "^4.1.6"
+  }
+}
