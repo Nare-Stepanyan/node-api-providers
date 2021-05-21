@@ -7,6 +7,7 @@ const routesUrls = require("./routes/routes");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const path = require("path");
+const bodyParser = require("body-parser");
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -48,6 +49,13 @@ let corsOptionsDelegate = {
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "client/build")));
 app.use(cors(corsOptionsDelegate));
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
+
+app.use(bodyParser.json());
 
 app.use("/", routesUrls);
 
