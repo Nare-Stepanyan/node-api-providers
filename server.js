@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-//const cors = require("cors");
+const cors = require("cors");
 const routesUrls = require("./routes/routes");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
@@ -50,7 +50,7 @@ db.once("open", function () {
 
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "client/build")));
-//app.use(cors(corsOptions));
+app.use(cors());
 app.use("/", routesUrls);
 
 app.use("/", (req, res, next) => {
