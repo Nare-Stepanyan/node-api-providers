@@ -90,7 +90,7 @@ let options = {
  *
  */
 
-router.get("/client", cors(options), clientController.get);
+router.get("/client", cors(), clientController.get);
 
 /**
  * @swagger
@@ -175,7 +175,7 @@ router.put("/client/:id", cors(options), clientController.update);
  *
  */
 
-router.delete("/client/:id", clientController.delete);
+router.delete("/client/:id", cors(), clientController.delete);
 
 /**
  * @swagger
@@ -198,7 +198,7 @@ router.delete("/client/:id", clientController.delete);
  *
  */
 
-router.get("/provider", cors(options), providerController.get);
+router.get("/provider", cors(), providerController.get);
 
 /**
  * @swagger
@@ -283,6 +283,6 @@ router.put("/provider/:id", cors(options), providerController.update);
  *
  */
 
-router.delete("/provider/:id", cors(options), providerController.delete);
+router.delete("/provider/:id", cors(), providerController.delete);
 
 module.exports = router;
