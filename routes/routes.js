@@ -2,6 +2,14 @@ const express = require("express");
 const providerController = require("./../controllers/provider.controller");
 const clientController = require("./../controllers/client.controller");
 const router = express.Router();
+const cors = require("cors");
+
+let options = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
 
 /**
  *  @swagger
@@ -82,7 +90,7 @@ const router = express.Router();
  *
  */
 
-router.get("/client", clientController.get);
+router.get("/client", cors(options), clientController.get);
 
 /**
  * @swagger
@@ -107,7 +115,7 @@ router.get("/client", clientController.get);
  *                  description: Server error
  */
 
-router.post("/client", clientController.create);
+router.post("/client", cors(options), clientController.create);
 
 /**
  * @swagger
@@ -142,7 +150,7 @@ router.post("/client", clientController.create);
  *
  */
 
-router.put("/client/:id", clientController.update);
+router.put("/client/:id", cors(options), clientController.update);
 
 /**
  * @swagger
@@ -190,7 +198,7 @@ router.delete("/client/:id", clientController.delete);
  *
  */
 
-router.get("/provider", providerController.get);
+router.get("/provider", cors(options), providerController.get);
 
 /**
  * @swagger
@@ -215,7 +223,7 @@ router.get("/provider", providerController.get);
  *                  description: Server error
  */
 
-router.post("/provider", providerController.create);
+router.post("/provider", cors(options), providerController.create);
 
 /**
  * @swagger
@@ -250,7 +258,7 @@ router.post("/provider", providerController.create);
  *
  */
 
-router.put("/provider/:id", providerController.update);
+router.put("/provider/:id", cors(options), providerController.update);
 
 /**
  * @swagger
@@ -275,6 +283,6 @@ router.put("/provider/:id", providerController.update);
  *
  */
 
-router.delete("/provider/:id", providerController.delete);
+router.delete("/provider/:id", cors(options), providerController.delete);
 
 module.exports = router;
