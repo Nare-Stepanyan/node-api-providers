@@ -4,7 +4,7 @@ const clientController = require("./../controllers/client.controller");
 const router = express.Router();
 const cors = require("cors");
 
-corsOptionsDelegate = {
+let corsOptionsDelegate = {
   origin: "https://awesome-wilson-059c3e.netlify.app",
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   preflightContinue: false,
