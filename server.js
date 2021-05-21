@@ -48,7 +48,7 @@ let corsOptionsDelegate = {
 
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "client/build")));
-app.use(cors(corsOptionsDelegate));
+app.use(cors());
 app.use(
   bodyParser.urlencoded({
     extended: false,
