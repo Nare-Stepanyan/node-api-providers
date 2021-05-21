@@ -39,13 +39,6 @@ db.once("open", function () {
   console.log("db connected!");
 });
 
-let corsOptionsDelegate = {
-  origin: "https://awesome-wilson-059c3e.netlify.app",
-  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-  optionsSuccessStatus: 204,
-  credentials: true,
-};
-
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "client/build")));
 app.use(cors());
