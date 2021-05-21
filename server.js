@@ -38,7 +38,7 @@ db.once("open", function () {
   console.log("db connected!");
 });
 
-//app.use(express.static("public"));
+app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "client/build")));
 app.use(cors());
 app.use(function (req, res, next) {
