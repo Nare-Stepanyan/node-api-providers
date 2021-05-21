@@ -2,16 +2,6 @@ const express = require("express");
 const providerController = require("./../controllers/provider.controller");
 const clientController = require("./../controllers/client.controller");
 const router = express.Router();
-const cors = require("cors");
-
-let corsOptionsDelegate = {
-  origin: "https://awesome-wilson-059c3e.netlify.app",
-  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowedHeaders: ["Content-Type", "application/json"],
-  credentials: true,
-};
 
 /**
  *  @swagger
@@ -92,7 +82,7 @@ let corsOptionsDelegate = {
  *
  */
 
-router.get("/client", cors(corsOptionsDelegate), clientController.get);
+router.get("/client", clientController.get);
 
 /**
  * @swagger
@@ -117,7 +107,7 @@ router.get("/client", cors(corsOptionsDelegate), clientController.get);
  *                  description: Server error
  */
 
-router.post("/client", cors(corsOptionsDelegate), clientController.create);
+router.post("/client", clientController.create);
 
 /**
  * @swagger
@@ -152,7 +142,7 @@ router.post("/client", cors(corsOptionsDelegate), clientController.create);
  *
  */
 
-router.put("/client/:id", cors(corsOptionsDelegate), clientController.update);
+router.put("/client/:id", clientController.update);
 
 /**
  * @swagger
@@ -177,7 +167,7 @@ router.put("/client/:id", cors(corsOptionsDelegate), clientController.update);
  *
  */
 
-router.delete("/client/:id", cors(), clientController.delete);
+router.delete("/client/:id", clientController.delete);
 
 /**
  * @swagger
@@ -200,7 +190,7 @@ router.delete("/client/:id", cors(), clientController.delete);
  *
  */
 
-router.get("/provider", cors(), providerController.get);
+router.get("/provider", providerController.get);
 
 /**
  * @swagger
@@ -225,7 +215,7 @@ router.get("/provider", cors(), providerController.get);
  *                  description: Server error
  */
 
-router.post("/provider", cors(corsOptionsDelegate), providerController.create);
+router.post("/provider", providerController.create);
 
 /**
  * @swagger
@@ -260,7 +250,7 @@ router.post("/provider", cors(corsOptionsDelegate), providerController.create);
  *
  */
 
-router.put("/provider/:id", cors(), providerController.update);
+router.put("/provider/:id", providerController.update);
 
 /**
  * @swagger
@@ -285,6 +275,6 @@ router.put("/provider/:id", cors(), providerController.update);
  *
  */
 
-router.delete("/provider/:id", cors(), providerController.delete);
+router.delete("/provider/:id", providerController.delete);
 
 module.exports = router;
