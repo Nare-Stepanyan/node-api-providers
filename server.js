@@ -38,24 +38,20 @@ db.once("open", function () {
   console.log("db connected!");
 });
 
-let corsOptionsDelegate = {
-  origin: "https://awesome-wilson-059c3e.netlify.app",
-  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-  optionsSuccessStatus: 204,
-  credentials: true,
-};
+// let corsOptionsDelegate = {
+//   origin: "https://awesome-wilson-059c3e.netlify.app",
+//   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+//   optionsSuccessStatus: 204,
+//   credentials: true,
+// };
 
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "client/build")));
-app.use(cors(corsOptionsDelegate));
+app.use(cors());
 
 app.use("/", routesUrls);
 
 app.use("/", (req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://awesome-wilson-059c3e.netlify.app"
-  );
   res.end("Home page");
 });
 
