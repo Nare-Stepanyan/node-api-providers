@@ -111,7 +111,7 @@ var corsOptionsDelegate = function (req, res, next) {
  *
  */
 
-router.get("/client", cors(), clientController.get);
+router.get("/client", cors(corsOptionsDelegate), clientController.get);
 
 /**
  * @swagger
