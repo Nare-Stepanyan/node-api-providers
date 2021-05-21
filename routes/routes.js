@@ -4,8 +4,11 @@ const clientController = require("./../controllers/client.controller");
 const router = express.Router();
 const cors = require("cors");
 
-let corsOptionsDelegate = {
-  "Access-Control-Allow-Origin": "https://awesome-wilson-059c3e.netlify.app",
+corsOptionsDelegate = {
+  origin: "https://awesome-wilson-059c3e.netlify.app",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
 };
 
 /**
