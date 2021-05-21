@@ -5,10 +5,28 @@ const router = express.Router();
 const cors = require("cors");
 
 let options = {
-  origin: CLIENT_HOST,
+  //origin: CLIENT_HOST,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 204,
+  origin: function (origin, callback) {
+    // db.loadOrigins is an example call to load
+    // a list of origins from a backing database
+    db.loadOrigins(function (error, origins) {
+      callback(error, origins);
+    });
+  },
+};
+
+var allowlist = ["https://awesome-wilson-059c3e.netlify.app"];
+var corsOptionsDelegate = function (req, callback) {
+  var corsOptions;
+  if (allowlist.indexOf(req.header("Origin")) !== -1) {
+    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false }; // disable CORS for this request
+  }
+  callback(null, corsOptions); // callback expects two parameters: error and options
 };
 
 /**
@@ -90,7 +108,7 @@ let options = {
  *
  */
 
-router.get("/client", cors(), clientController.get);
+router.get("/client", cors(corsOptionsDelegate), clientController.get);
 
 /**
  * @swagger
@@ -115,7 +133,7 @@ router.get("/client", cors(), clientController.get);
  *                  description: Server error
  */
 
-router.post("/client", cors(options), clientController.create);
+router.post("/client", cors(corsOptionsDelegate), clientController.create);
 
 /**
  * @swagger
@@ -150,7 +168,7 @@ router.post("/client", cors(options), clientController.create);
  *
  */
 
-router.put("/client/:id", cors(options), clientController.update);
+router.put("/client/:id", cors(corsOptionsDelegate), clientController.update);
 
 /**
  * @swagger
@@ -175,7 +193,11 @@ router.put("/client/:id", cors(options), clientController.update);
  *
  */
 
-router.delete("/client/:id", cors(), clientController.delete);
+router.delete(
+  "/client/:id",
+  cors(corsOptionsDelegate),
+  clientController.delete
+);
 
 /**
  * @swagger
@@ -198,7 +220,7 @@ router.delete("/client/:id", cors(), clientController.delete);
  *
  */
 
-router.get("/provider", cors(), providerController.get);
+router.get("/provider", cors(corsOptionsDelegate), providerController.get);
 
 /**
  * @swagger
@@ -223,7 +245,7 @@ router.get("/provider", cors(), providerController.get);
  *                  description: Server error
  */
 
-router.post("/provider", cors(options), providerController.create);
+router.post("/provider", cors(corsOptionsDelegate), providerController.create);
 
 /**
  * @swagger
@@ -258,7 +280,11 @@ router.post("/provider", cors(options), providerController.create);
  *
  */
 
-router.put("/provider/:id", cors(options), providerController.update);
+router.put(
+  "/provider/:id",
+  cors(corsOptionsDelegate),
+  providerController.update
+);
 
 /**
  * @swagger
@@ -283,6 +309,10 @@ router.put("/provider/:id", cors(options), providerController.update);
  *
  */
 
-router.delete("/provider/:id", cors(), providerController.delete);
+router.delete(
+  "/provider/:id",
+  cors(corsOptionsDelegate),
+  providerController.delete
+);
 
 module.exports = router;
