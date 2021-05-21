@@ -7,7 +7,6 @@ const routesUrls = require("./routes/routes");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const path = require("path");
-const bodyParser = require("body-parser");
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -41,34 +40,26 @@ db.once("open", function () {
 
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "client/build")));
-app.use(cors());
+//app.use(cors());
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", CLIENT_HOST);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
+  res.header("Access-Control-Allow-Credentials", true);
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+  next();
+});
 
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-);
-
-app.use(bodyParser.json());
 app.use("/", routesUrls);
 
 app.use("/", (req, res, next) => {
   res.end("Home page");
 });
-
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", CLIENT_HOST);
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
-//   res.header("Access-Control-Allow-Credentials", true);
-//   if (req.method === "OPTIONS") {
-//     return res.sendStatus(204);
-//   }
-//   next();
-// });
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
