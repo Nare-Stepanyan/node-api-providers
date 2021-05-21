@@ -6,7 +6,7 @@ const cors = require("cors");
 
 corsOptionsDelegate = {
   origin: "https://awesome-wilson-059c3e.netlify.app",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   preflightContinue: false,
   optionsSuccessStatus: 204,
   allowedHeaders: ["Content-Type", "application/json"],
