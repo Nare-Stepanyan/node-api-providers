@@ -38,9 +38,19 @@ db.once("open", function () {
   console.log("db connected!");
 });
 
+///////////////////////
+var corsOptions = {
+  origin: CLIENT_HOST,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
+
+///////////////////////
+
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "client/build")));
-app.use(cors({ origin: CLIENT_HOST }));
+app.use(cors(corsOptions));
 app.use("/", routesUrls);
 
 app.use("/", (req, res, next) => {
