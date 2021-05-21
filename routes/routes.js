@@ -4,29 +4,25 @@ const clientController = require("./../controllers/client.controller");
 const router = express.Router();
 const cors = require("cors");
 
-let options = {
-  //origin: CLIENT_HOST,
+// let options = {
+//   //origin: CLIENT_HOST,
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   preflightContinue: false,
+//   optionsSuccessStatus: 204,
+//   origin: function (origin, callback) {
+//     // db.loadOrigins is an example call to load
+//     // a list of origins from a backing database
+//     db.loadOrigins(function (error, origins) {
+//       callback(error, origins);
+//     });
+//   },
+// };
+
+var corsOptionsDelegate = {
+  origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 204,
-  origin: function (origin, callback) {
-    // db.loadOrigins is an example call to load
-    // a list of origins from a backing database
-    db.loadOrigins(function (error, origins) {
-      callback(error, origins);
-    });
-  },
-};
-
-var allowlist = ["https://awesome-wilson-059c3e.netlify.app"];
-var corsOptionsDelegate = function (req, callback) {
-  var corsOptions;
-  if (allowlist.indexOf(req.header("Origin")) !== -1) {
-    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
-  } else {
-    corsOptions = { origin: false }; // disable CORS for this request
-  }
-  callback(null, corsOptions); // callback expects two parameters: error and options
 };
 
 /**
