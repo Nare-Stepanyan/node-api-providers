@@ -39,7 +39,7 @@ db.once("open", function () {
 });
 
 let corsOptionsDelegate = {
-  origin: CLIENT_HOST,
+  origin: "https://awesome-wilson-059c3e.netlify.app",
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   optionsSuccessStatus: 204,
   credentials: true,
