@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const cors = require("cors");
+//const cors = require("cors");
 const routesUrls = require("./routes/routes");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
@@ -39,18 +39,18 @@ db.once("open", function () {
 });
 
 ///////////////////////
-var corsOptions = {
-  origin: CLIENT_HOST,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-};
+// var corsOptions = {
+//   origin: CLIENT_HOST,
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   preflightContinue: false,
+//   optionsSuccessStatus: 204,
+// };
 
 ///////////////////////
 
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "client/build")));
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 app.use("/", routesUrls);
 
 app.use("/", (req, res, next) => {
