@@ -52,6 +52,7 @@ app.use(cors(corsOptionsDelegate));
 app.use("/", routesUrls);
 
 app.use("/", (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
   res.end("Home page");
 });
 
