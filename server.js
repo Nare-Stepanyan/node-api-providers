@@ -52,7 +52,10 @@ app.use(cors(corsOptionsDelegate));
 app.use("/", routesUrls);
 
 app.use("/", (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://awesome-wilson-059c3e.netlify.app"
+  );
   res.end("Home page");
 });
 
