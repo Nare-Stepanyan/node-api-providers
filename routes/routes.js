@@ -5,7 +5,7 @@ const router = express.Router();
 const cors = require("cors");
 
 let options = {
-  origin: "*",
+  origin: CLIENT_HOST,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 204,
