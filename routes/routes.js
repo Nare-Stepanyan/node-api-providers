@@ -4,32 +4,8 @@ const clientController = require("./../controllers/client.controller");
 const router = express.Router();
 const cors = require("cors");
 
-// let options = {
-//   //origin: CLIENT_HOST,
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   preflightContinue: false,
-//   optionsSuccessStatus: 204,
-//   origin: function (origin, callback) {
-//     // db.loadOrigins is an example call to load
-//     // a list of origins from a backing database
-//     db.loadOrigins(function (error, origins) {
-//       callback(error, origins);
-//     });
-//   },
-// };
-
-var corsOptionsDelegate = function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", CLIENT_HOST);
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
-  res.header("Access-Control-Allow-Credentials", true);
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
-  // next();
+let corsOptionsDelegate = {
+  "Access-Control-Allow-Origin": "https://awesome-wilson-059c3e.netlify.app",
 };
 
 /**
