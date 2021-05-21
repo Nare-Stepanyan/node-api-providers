@@ -10,6 +10,7 @@ corsOptionsDelegate = {
   preflightContinue: false,
   optionsSuccessStatus: 204,
   allowedHeaders: ["Content-Type", "application/json"],
+  credentials: true,
 };
 
 /**
