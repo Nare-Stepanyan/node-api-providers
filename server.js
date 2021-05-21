@@ -39,18 +39,18 @@ db.once("open", function () {
 });
 
 ///////////////////////
-// var corsOptions = {
-//   origin: CLIENT_HOST,
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   preflightContinue: false,
-//   optionsSuccessStatus: 204,
-// };
+var corsOptions = {
+  origin: CLIENT_HOST,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
 
 ///////////////////////
 
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "client/build")));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use("/", routesUrls);
 
 app.use("/", (req, res, next) => {
