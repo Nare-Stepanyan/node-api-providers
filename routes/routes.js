@@ -19,10 +19,9 @@ const cors = require("cors");
 // };
 
 var corsOptionsDelegate = {
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
+  origin: true,
+  methods: ["POST"],
+  credentials: true,
 };
 
 /**
@@ -104,7 +103,7 @@ var corsOptionsDelegate = {
  *
  */
 
-router.get("/client", cors(corsOptionsDelegate), clientController.get);
+router.get("/client", cors(), clientController.get);
 
 /**
  * @swagger
@@ -189,11 +188,7 @@ router.put("/client/:id", cors(corsOptionsDelegate), clientController.update);
  *
  */
 
-router.delete(
-  "/client/:id",
-  cors(corsOptionsDelegate),
-  clientController.delete
-);
+router.delete("/client/:id", cors(), clientController.delete);
 
 /**
  * @swagger
@@ -216,7 +211,7 @@ router.delete(
  *
  */
 
-router.get("/provider", cors(corsOptionsDelegate), providerController.get);
+router.get("/provider", cors(), providerController.get);
 
 /**
  * @swagger
@@ -276,11 +271,7 @@ router.post("/provider", cors(corsOptionsDelegate), providerController.create);
  *
  */
 
-router.put(
-  "/provider/:id",
-  cors(corsOptionsDelegate),
-  providerController.update
-);
+router.put("/provider/:id", cors(), providerController.update);
 
 /**
  * @swagger
@@ -305,10 +296,6 @@ router.put(
  *
  */
 
-router.delete(
-  "/provider/:id",
-  cors(corsOptionsDelegate),
-  providerController.delete
-);
+router.delete("/provider/:id", cors(), providerController.delete);
 
 module.exports = router;
